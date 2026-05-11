@@ -30,7 +30,7 @@ const TodoItem = React.memo(function TodoItem({ id, text, completed, onToggle, o
       }}
     >
       <Box sx={{ display: "flex", alignItems: "center", gap: 1, flex: 1 }}>
-        <Checkbox checked={completed} onChange={handleToggle} color="primary" />
+        <Checkbox checked={completed} onChange={handleToggle} color="primary" inputProps={{ 'aria-label': 'Toggle task status' }} />
         {isEditing ? (
           <TextField
             value={newTitle}
@@ -38,6 +38,7 @@ const TodoItem = React.memo(function TodoItem({ id, text, completed, onToggle, o
             size="small"
             onKeyDown={(e) => e.key === "Enter" && handleSave()}
             fullWidth
+            inputProps={{ 'aria-label': 'Edit task title' }}
           />
         ) : (
           <Typography sx={{ textDecoration: completed ? "line-through" : "none" }}>
@@ -48,15 +49,15 @@ const TodoItem = React.memo(function TodoItem({ id, text, completed, onToggle, o
 
       <Box>
         {isEditing ? (
-          <IconButton onClick={handleSave} color="primary">
+          <IconButton onClick={handleSave} color="primary" aria-label="save todo">
             <SaveIcon />
           </IconButton>
         ) : (
-          <IconButton onClick={() => setIsEditing(true)} color="primary">
+          <IconButton onClick={() => setIsEditing(true)} color="primary" aria-label="edit todo">
             <EditIcon />
           </IconButton>
         )}
-        <IconButton onClick={handleDelete} color="secondary">
+        <IconButton onClick={handleDelete} color="secondary" aria-label="delete todo">
           <DeleteIcon />
         </IconButton>
       </Box>

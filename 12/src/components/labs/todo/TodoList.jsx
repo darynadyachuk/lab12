@@ -28,6 +28,7 @@ export default function TodoList({
 
       <TextField
         placeholder="Search todos..."
+        inputProps={{ 'aria-label': 'Search tasks' }}
         value={searchTerm}
         onChange={(e) => onSearchChange(e.target.value)}
         fullWidth

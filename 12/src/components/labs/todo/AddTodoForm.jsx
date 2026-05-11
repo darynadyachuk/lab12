@@ -19,6 +19,7 @@ export default function AddTodoForm({ onAddTodo }) {
     >
       <TextField
         placeholder="New task..."
+        inputProps={{ 'aria-label': 'Add new task' }}
         value={text}
         onChange={(e) => setText(e.target.value)}
         fullWidth

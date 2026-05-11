@@ -9,8 +9,7 @@ on:
 jobs:
   pa11y:
     runs-on: ubuntu-latest
-    
-    # Цей блок каже GitHub Actions працювати всередині папки '12'
+
     defaults:
       run:
         working-directory: 12
@@ -23,25 +22,22 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: npm
-          # Вказуємо шлях до lock-файлу для кешування
+          cache: 'npm'
           cache-dependency-path: 12/package-lock.json
 
       - name: Install dependencies
         run: npm ci
 
       - name: Build app
-        working-directory: 12
         run: npm run build
 
       - name: Start preview server
-        # Додаємо &, щоб працював у фоні
-        run: npm run preview -- --port 5173 &
+        # Явно вказуємо хост 127.0.0.1, щоб wait-on точно його знайшов
+        run: npm run preview -- --port 5173 --host 127.0.0.1 &
 
       - name: Wait for server
-        run: npx wait-on http://127.0.0.1:5173 --timeout 60000
+        # Використовуємо http-get, щоб переконатися, що сервер віддає контент
+        run: npx wait-on http-get://127.0.0.1:5173 --timeout 60000
 
       - name: Run accessibility checks
-        # Оскільки ми вже в папці '12', шлях до конфігу буде '.pa11yci' (якщо він там лежить)
-        # Якщо файл '.pa11yci' лежить у папці '12', використовуйте шлях нижче:
         run: npx pa11y-ci --config .pa11yci

@@ -9,7 +9,7 @@ import AccessibilityManager from "./components/AccessibilityManager";
 function App() {
   return (
     <CustomThemeProvider>
-      <Router>
+      <Router basename="/lab12">
         <AccessibilityManager />
         <CssBaseline />
         <AppBarNav />

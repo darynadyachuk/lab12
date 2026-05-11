@@ -28,9 +28,10 @@ jobs:
           cache-dependency-path: 12/package-lock.json
 
       - name: Install dependencies
-        run: npm ci --prefix 12
+        run: npm ci
 
       - name: Build app
+        working-directory: 12
         run: npm run build
 
       - name: Start preview server

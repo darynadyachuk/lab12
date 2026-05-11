@@ -1,10 +1,15 @@
-name: Accessibility Check
+name: Accessibility Check and Deploy
 
 on:
   push:
     branches:
       - master
   pull_request:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
 
 jobs:
   pa11y:
@@ -32,7 +37,6 @@ jobs:
         run: npm run build
 
       - name: Start preview server
-        # Використовуємо 127.0.0.1, щоб точно збігалося з wait-on
         run: npm run preview -- --host 127.0.0.1 --port 5173 &
 
       - name: Wait for server
@@ -42,5 +46,19 @@ jobs:
         run: npx pa11y-ci --config .pa11yci
 
       - name: Run accessibility checks (Dark mode)
-        # Переконайтеся, що файл .pa11yci-dark.json існує у папці 12
         run: npx pa11y-ci --config .pa11yci-dark.json
+
+      - name: Setup Pages
+        if: github.event_name == 'push'
+        uses: actions/configure-pages@v4
+
+      - name: Upload artifact
+        if: github.event_name == 'push'
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: '12/dist'
+
+      - name: Deploy to GitHub Pages
+        if: github.event_name == 'push'
+        id: deployment
+        uses: actions/deploy-pages@v4

@@ -18,6 +18,8 @@ export default function AddTodoForm({ onAddTodo }) {
       sx={{ display: "flex", gap: 2, mb: 2, alignItems: "center" }}
     >
       <TextField
+        id="add-new-task-input"
+        label="New task"
         placeholder="New task..."
         inputProps={{ 'aria-label': 'Add new task' }}
         value={text}

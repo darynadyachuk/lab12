@@ -1,5 +1,13 @@
 import React, { useState } from "react";
-import { ListItem, Checkbox, Typography, IconButton, TextField, Box } from "@mui/material";
+import {
+  ListItem,
+  Checkbox,
+  Typography,
+  IconButton,
+  TextField,
+  Box,
+  FormControlLabel
+} from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import SaveIcon from "@mui/icons-material/Save";
@@ -8,8 +16,12 @@ const TodoItem = React.memo(function TodoItem({ id, text, completed, onToggle, o
   const [isEditing, setIsEditing] = useState(false);
   const [newTitle, setNewTitle] = useState(text);
 
+  const inputId = `todo-input-${id}`;
+  const checkboxId = `todo-checkbox-${id}`;
+
   function handleToggle() { onToggle(id); }
   function handleDelete() { onDelete(id); }
+
   async function handleSave() {
     if (newTitle.trim()) {
       await onEdit(id, newTitle);
@@ -30,34 +42,73 @@ const TodoItem = React.memo(function TodoItem({ id, text, completed, onToggle, o
       }}
     >
       <Box sx={{ display: "flex", alignItems: "center", gap: 1, flex: 1 }}>
-        <Checkbox checked={completed} onChange={handleToggle} color="primary" inputProps={{ 'aria-label': 'Toggle task status' }} />
+        <FormControlLabel
+          sx={{ mr: 0 }}
+          control={
+            <Checkbox
+              id={checkboxId}
+              checked={completed}
+              onChange={handleToggle}
+              color="primary"
+              inputProps={{
+                'aria-label': completed ? `Mark "${text}" as incomplete` : `Mark "${text}" as completed`
+              }}
+            />
+          }
+          label=""
+        />
+
         {isEditing ? (
           <TextField
+            id={inputId}
+            label="Edit task"
             value={newTitle}
             onChange={(e) => setNewTitle(e.target.value)}
             size="small"
             onKeyDown={(e) => e.key === "Enter" && handleSave()}
             fullWidth
-            inputProps={{ 'aria-label': 'Edit task title' }}
+            autoFocus
+            variant="outlined"
+            InputLabelProps={{ shrink: true }}
           />
         ) : (
-          <Typography sx={{ textDecoration: completed ? "line-through" : "none" }}>
+          <Typography
+            component="label"
+            htmlFor={checkboxId}
+            sx={{
+              textDecoration: completed ? "line-through" : "none",
+              cursor: "pointer",
+              flex: 1
+            }}
+          >
             {text}
           </Typography>
         )}
       </Box>
 
-      <Box>
+      <Box sx={{ ml: 2, display: "flex", flexShrink: 0 }}>
         {isEditing ? (
-          <IconButton onClick={handleSave} color="primary" aria-label="save todo">
+          <IconButton
+            onClick={handleSave}
+            color="primary"
+            aria-label={`Save changes for ${text}`}
+          >
             <SaveIcon />
           </IconButton>
         ) : (
-          <IconButton onClick={() => setIsEditing(true)} color="primary" aria-label="edit todo">
+          <IconButton
+            onClick={() => setIsEditing(true)}
+            color="primary"
+            aria-label={`Edit task: ${text}`}
+          >
             <EditIcon />
           </IconButton>
         )}
-        <IconButton onClick={handleDelete} color="secondary" aria-label="delete todo">
+        <IconButton
+          onClick={handleDelete}
+          color="secondary"
+          aria-label={`Delete task: ${text}`}
+        >
           <DeleteIcon />
         </IconButton>
       </Box>

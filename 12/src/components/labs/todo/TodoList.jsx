@@ -25,16 +25,29 @@ export default function TodoList({
   return (
     <Box>
       <AddTodoForm onAddTodo={onAddTodo} />
-
-      <TextField
-        placeholder="Search todos..."
-        inputProps={{ 'aria-label': 'Search tasks' }}
-        value={searchTerm}
-        onChange={(e) => onSearchChange(e.target.value)}
-        fullWidth
-        size="small"
-        sx={{ mb: 2 }}
-      />
+    <TextField
+      id="search-todos-input"
+      label="Search tasks"
+      placeholder="Search todos..."
+      value={searchTerm}
+      onChange={(e) => onSearchChange(e.target.value)}
+      fullWidth
+      size="small"
+      sx={{ mb: 2 }}
+      inputProps={{ 'aria-label': 'Search tasks' }}
+      InputLabelProps={{
+        sx: {
+          position: "absolute",
+          width: "1px",
+          height: "1px",
+          margin: "-1px",
+          padding: "0",
+          overflow: "hidden",
+          clip: "rect(0, 0, 0, 0)",
+          border: "0",
+        },
+      }}
+    />
 
       <List>
         {todos.map((todo) => (

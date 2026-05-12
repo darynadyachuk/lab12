@@ -1,0 +1,202 @@
+:root {
+  --a11y-font-scale: 1;
+  --a11y-line-height: 1.5;
+  --a11y-letter-spacing: 0px;
+  --a11y-text-align: left;
+  --a11y-text-transform: none;
+}
+body {
+  font-size: calc(16px * var(--a11y-font-scale)) !important;
+  line-height: var(--a11y-line-height) !important;
+  letter-spacing: var(--a11y-letter-spacing) !important;
+  text-align: var(--a11y-text-align) !important;
+  text-transform: var(--a11y-text-transform) !important;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+body *,
+body .MuiTypography-root,
+body .MuiButton-root,
+body .MuiInputBase-root,
+body div, body p, body span {
+  font-size: inherit !important;
+  text-align: inherit !important;
+  text-transform: inherit !important;
+  line-height: inherit !important;
+  letter-spacing: inherit !important;
+}
+
+h1 { font-size: calc(2.2rem * var(--a11y-font-scale)) !important; }
+h2 { font-size: calc(1.8rem * var(--a11y-font-scale)) !important; }
+h3 { font-size: calc(1.4rem * var(--a11y-font-scale)) !important; }
+
+body.a11y-contrast-high,
+body.a11y-contrast-high #root,
+body.a11y-contrast-high main,
+body.a11y-contrast-high div[style*="background-color"],
+body.a11y-contrast-high .MuiBox-root,
+body.a11y-contrast-high .MuiDrawer-paper {
+  background-color: #000 !important;
+  color: #fff !important;
+  background-image: none !important;
+}
+
+body.a11y-contrast-high .MuiPaper-root:not(.MuiDrawer-paper),
+body.a11y-contrast-high [class*="Profile"],
+body.a11y-contrast-high .todo-item,
+body.a11y-contrast-high fieldset {
+  background-color: #000 !important;
+  color: #fff !important;
+  border: 2px solid #fff !important;
+  box-shadow: none !important;
+}
+
+body.a11y-contrast-high .MuiSwitch-track{
+  background-color: #555 !important;
+  opacity: 1 !important;
+  border: 1px solid #fff !important;
+}
+
+body.a11y-contrast-high .MuiSwitch-thumb{
+  background-color: #fff !important;
+}
+
+body.a11y-contrast-high .MuiToggleButton-root{
+  border: 1px solid #fff !important;
+  color: #f0ebeb !important;
+}
+
+body.a11y-contrast-high .MuiToggleButton-root.Mui-selected{
+  background-color: #fff !important;
+  color: #000 !important;
+}
+
+body.a11y-contrast-invert #root {
+  filter: invert(100%) hue-rotate(180deg) !important;
+  background-color: #fff !important;
+  min-height: 100vh;
+}
+
+body.a11y-contrast-invert {
+  filter: none !important;
+  background-color: #000 !important;
+}
+body.a11y-contrast-invert img, 
+body.a11y-contrast-invert .MuiAvatar-root {
+  filter: invert(100%) hue-rotate(180deg) !important;
+}
+
+body.a11y-contrast-invert .MuiTextField-root,
+body.a11y-contrast-invert .MuiInputBase-root,
+body.a11y-contrast-invert input {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+}
+
+body.a11y-contrast-invert .MuiOutlinedInput-notchedOutline {
+  border-color: #000000 !important;
+  border-width: 2px !important;
+}
+
+body.a11y-contrast-invert .MuiTypography-colorTextSecondary {
+  color: #000000 !important;
+  opacity: 1 !important;
+}
+
+body.a11y-contrast-invert input::placeholder {
+  color: #000000 !important;
+  opacity: 0.7 !important;
+}
+
+body.a11y-contrast-invert h1,
+body.a11y-contrast-invert .pagination-container,
+body.a11y-contrast-invert .pagination-text {
+  filter: invert(100%) hue-rotate(180deg) !important;
+  color: #f4ebf0 !important;
+}
+
+body.a11y-contrast-invert .pagination-button {
+  filter: invert(100%) hue-rotate(180deg) !important;
+  background-color: #0a0005 !important;
+  color: #fff !important;
+}
+
+body.a11y-contrast-invert .total-count {
+  color: #000000 !important;
+  opacity: 1 !important;
+}
+
+body.a11y-hl-links a,
+body.a11y-hl-links button:not(.a11y-toggle-btn) {
+  background-color: #9b2e61 !important;
+  color: #fbf2f2 !important;
+  outline: 3px solid #000 !important;
+  text-decoration: underline !important;
+  font-weight: 900 !important;
+}
+
+body.a11y-hl-headers h1,
+body.a11y-hl-headers h2,
+body.a11y-hl-headers h3 {
+  background-color: #0000ff !important;
+  color: #ffffff !important;
+  outline: 4px solid #ffff00 !important;
+  padding: 10px !important;
+}
+
+body.a11y-no-anim *,
+body.a11y-no-anim *::before,
+body.a11y-no-anim *::after {
+  animation: none !important;
+  transition: none !important;
+}
+
+*:focus-visible {
+  outline: 5px solid #ffcc00 !important;
+  outline-offset: 3px !important;
+}
+
+.MuiDrawer-paper {
+  width: 760px !important;
+  max-width: 90vw !important;
+  font-size: 25px !important;
+  box-sizing: border-box !important;
+  padding: 20px !important;
+}
+
+.MuiDrawer-paper *,
+.MuiDrawer-paper .MuiTypography-root,
+.MuiDrawer-paper .MuiButton-root,
+.MuiDrawer-paper .MuiFormControlLabel-label,
+.MuiDrawer-paper .MuiToggleButton-root {
+  font-size: 25px !important;
+  line-height: 1.2 !important;
+  text-transform: none !important;
+}
+
+.MuiDrawer-paper h2,
+.MuiDrawer-paper .MuiTypography-h6 {
+  font-size: 32px !important;
+  font-weight: bold !important;
+  margin-bottom: 20px !important;
+  border-bottom: 2px solid currentColor;
+  padding-bottom: 10px !important;
+  display: block !important;
+}
+
+.MuiDrawer-paper .MuiToggleButtonGroup-root {
+  height: auto !important;
+  margin: 10px 0 !important;
+}
+
+.MuiDrawer-paper svg {
+  font-size: 30px !important;
+}
+
+.a11y-toggle-btn,
+button[aria-label="Налаштування доступності"],
+button[aria-label="Відкрити налаштування доступності"] {
+  width: 60px !important;
+  height: 60px !important;
+  font-size: 30px !important;
+}

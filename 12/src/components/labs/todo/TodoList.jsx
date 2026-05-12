@@ -69,7 +69,7 @@ export default function TodoList({
         </Typography>
       )}
 
-      <Box sx={{ display: "flex", justifyContent: "center", gap: 2, mt: 2 }}>
+      <Box className="pagination-container" sx={{ display: "flex", justifyContent: "center", gap: 2, mt: 2 }}>
         <Button onClick={onPrevPage} disabled={currentPage === 1} variant="contained">
           Previous
         </Button>
@@ -85,7 +85,7 @@ export default function TodoList({
         </Button>
       </Box>
 
-      <Typography align="center" color="text.secondary" sx={{ mt: 1 }}>
+      <Typography align="center" className="total-count" sx={{ mt: 1 }}>
         Total todos: {totalTodos}
       </Typography>
     </Box>
